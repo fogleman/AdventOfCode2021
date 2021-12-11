@@ -29,11 +29,10 @@ def part1(grid):
 def part2(grid):
     i = 0
     w, h = grid.shape
-    n = (w - 2) * (h - 2)
     while True:
         i += 1
         grid, count = step(grid)
-        if count == n:
+        if count == (w - 2) * (h - 2):
             return i
 
 print(part1(grid))
