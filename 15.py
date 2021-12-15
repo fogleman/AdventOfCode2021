@@ -10,14 +10,11 @@ def large(cells):
     w, h = w + 1, h + 1
     for y in range(h * 5):
         for x in range(w * 5):
-            v = (cells[(x % w, y % h)] + x // w + y // h - 1) % 9 + 1
-            result[(x, y)] = v
+            result[(x, y)] = (cells[(x % w, y % h)] + x // w + y // h - 1) % 9 + 1
     return result
 
 def heuristic(p, t, v):
-    dx = abs(p[0] - t[0])
-    dy = abs(p[1] - t[1])
-    return v + (dx + dy) ** 1.001
+    return v + (abs(p[0] - t[0]) + abs(p[1] - t[1])) ** 1.001
 
 def shortest_path(cells, source, target):
     seen, queue = set(), [(heuristic(source, target, 0), 0, source)]
